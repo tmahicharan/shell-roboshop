@@ -39,11 +39,11 @@ dnf install nodejs -y &>> $LOG_FILE
 VALIDATE $? "Installing nodejs"
 
 id roboshop
-if [ $? -ne 0 ]; then
+if [ $? -ne 0 ]; then &>> $LOG_FILE
     useradd -r -d /app -s /sbin/nologin -c "RoboShop system User" roboshop
-    VALIDATE $? "Adding roboshop user"
+    VALIDATE $? "Adding roboshop user" &>> $LOG_FILE
 else
-   echo "roboshop user already exists $Y SKIPPING $N"
+   echo -e "roboshop user already exists $YSKIPPING $N"
 fi
 mkdir -p /app
 VALIDATE $? "Creating /app directory"
@@ -57,7 +57,7 @@ VALIDATE $? "Changing directory to /app"
 rm -rf /app/*
 VALIDATE $? "Cleaning /app directory"
 
-unzip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip &>> $LOG_FILE
 VALIDATE $? "unzipping catalogue app"
 
 npm install &>> $LOG_FILE
