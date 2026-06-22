@@ -38,7 +38,7 @@ VALIDATE $? "Enabling nodejs module"
 dnf install nodejs -y &>> $LOG_FILE
 VALIDATE $? "Installing nodejs"
 
-id roboshop
+id servers
 if [ $? -ne 0 ]; then
     useradd --system --home/app --shell /sbin/nologin --comment "RoboShop system User" roboshop
     VALIDATE $? "Adding roboshop user"
