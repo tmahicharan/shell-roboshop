@@ -33,14 +33,14 @@ VALIDATE $? "Adding mongo repo"
 dnf install mongodb-org -y &>> $LOG_FILE
 VALIDATE $? "Installing mongodb"
 
-systemctl enable mongodb
+systemctl enable mongod
 VALIDATE $? "Enabling MongoDB service"
 
-systemctl start mongodb
+systemctl start mongod
 VALIDATE $? "Starting MongoDB service"
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 VALIDATE $? "Updating MongoDB configuration"
 
-systemctl restart mongodb
+systemctl restart mongod
 VALIDATE $? "Restarting MongoDB service"
