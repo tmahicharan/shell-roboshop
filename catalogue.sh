@@ -15,7 +15,7 @@ LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
 
 mkdir -p $LOG_FOLDER
 
-if [ $USERId -ne 0 ]; then
+if [ $USERId -ne 0 ]; then 
     echo -e " $R ERROR:: Run this script as root user $N "
     exit 1
 fi
@@ -38,12 +38,12 @@ VALIDATE $? "Enabling nodejs module"
 dnf install nodejs -y &>> $LOG_FILE
 VALIDATE $? "Installing nodejs"
 
-id roboshop
+id roboshop &>> $LOG_FILE
 if [ $? -ne 0 ]; then &>> $LOG_FILE
     useradd -r -d /app -s /sbin/nologin -c "RoboShop system User" roboshop
     VALIDATE $? "Adding roboshop user" &>> $LOG_FILE
 else
-   echo -e "roboshop user already exists $YSKIPPING $N"
+   echo -e "roboshop user already exists $Y SKIPPING $N"
 fi
 mkdir -p /app
 VALIDATE $? "Creating /app directory"
