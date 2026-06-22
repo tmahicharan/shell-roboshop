@@ -84,5 +84,14 @@ VALIDATE $? "Installing mongodb-mongosh"
 mongosh --host mongodb.mahidevops.fun </app/db/master-data.js &>> $LOG_FILE
 VALIDATE $? "Loading master data to mongodb"
 
+
+INDEX=$(mongosh mongodb.mahidevops.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+if [ $INDEX -le 0 ]; then
+    mongosh --host mongodb.mahidevops.fun </app/db/master-data.js &>> $LOG_FILE
+else
+    echo -e "Catalogue DB already exists $Y SKIPPING $N"
+fi
+
+
 systemctl restart catalogue
 VALIDATE $? "Restarting catalogue service"
