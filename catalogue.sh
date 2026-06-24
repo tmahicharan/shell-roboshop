@@ -7,6 +7,9 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+
+START_TIME=$(date +%s) &>> $LOGS_FILE
+
 SCRIPT_DIR=$(pwd)
 
 LOG_FOLDER="/var/log/shell-script"
@@ -22,10 +25,10 @@ fi
 
 VALIDATE() {
     if [ $1 -ne 0 ]; then
-        echo -e "$R Installing $2 is failed $N"
+        echo -e "Installing $2 is $R failed $N"
         exit 1
     else
-        echo -e "$G Installing $2 is Success $N"
+        echo -e "Installing $2 is $G Success $N"
     fi
 }
 
@@ -95,3 +98,8 @@ fi
 
 systemctl restart catalogue
 VALIDATE $? "Restarting catalogue service"
+
+END_TIME=$(date +%s) &>> $LOGS_FILE
+
+TOTAL_TIME=$(($END_TIME-$START_TIME)) &>> $LOGS_FILE
+echo "Total script script executed is $TOTAL_TIME "
