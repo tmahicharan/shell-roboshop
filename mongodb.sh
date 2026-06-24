@@ -8,7 +8,7 @@ Y="\e[33m"
 N="\e[0m"
 
 
-START_TIME=$(date +%s) &>> $LOGS_FILE
+START_TIME=$(date +%s) 
 LOG_FOLDER="/var/log/shell-script"
 SCRIPT_NAME=$(echo "$0" | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
