@@ -8,7 +8,7 @@ Y="\e[33m"
 N="\e[0m"
 
 
-START_TIME=$(date +%s) &>> $LOGS_FILE
+START_TIME=$(date +%s) 
 
 SCRIPT_DIR=$(pwd)
 
@@ -99,7 +99,7 @@ fi
 systemctl restart catalogue
 VALIDATE $? "Restarting catalogue service"
 
-END_TIME=$(date +%s) &>> $LOGS_FILE
+END_TIME=$(date +%s) 
 
-TOTAL_TIME=$(($END_TIME-$START_TIME)) &>> $LOGS_FILE
+TOTAL_TIME=$(($END_TIME-$START_TIME)) 
 echo "Total script script executed is $TOTAL_TIME "
