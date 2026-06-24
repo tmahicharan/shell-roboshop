@@ -56,7 +56,7 @@ VALIDATE $? "changing directory"
 rm -rf /app/*
 VALIDATE $? "removing app data"
 
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>> $LOG_FILE
 VALIDATE $? "Unzipping code"
 
 cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
