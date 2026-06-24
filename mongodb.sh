@@ -7,6 +7,8 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+
+START_TIME=$(date +%s) &>> $LOGS_FILE
 LOG_FOLDER="/var/log/shell-script"
 SCRIPT_NAME=$(echo "$0" | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
@@ -20,10 +22,10 @@ fi
 
 VALIDATE() {
     if [ $1 -ne 0 ]; then
-        echo -e "$R Installing $2 is failed $N"
+        echo -e "Installing $2 is $R failed $N"
         exit 1
     else
-        echo -e "$G Installing $2 is Success $N"
+        echo -e "Installing $2 is $G Success $N"
     fi
 }
 
@@ -44,3 +46,8 @@ VALIDATE $? "Updating MongoDB configuration"
 
 systemctl restart mongod
 VALIDATE $? "Restarting MongoDB service"
+
+END_TIME=$(date +%s) &>> $LOGS_FILE
+
+TOTAL_TIME=$(($END_TIME-$START_TIME)) &>> $LOGS_FILE
+echo "Total script script executed is $TOTAL_TIME "
