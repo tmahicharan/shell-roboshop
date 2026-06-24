@@ -62,7 +62,7 @@ VALIDATE $? "Change app directory"
 rm -rf /app/*
 VALIDATE $? "Removing app info"
 
-unzip /tmp/user.zip &>> $LOG_FILE
+unzip /tmp/cart.zip &>> $LOG_FILE
 VALIDATE $? "Unzip code"
 
 npm install &>> $LOG_FILE
