@@ -43,7 +43,7 @@ dnf install nodejs -y &>> $LOG_FILE
 VALIDATE $? "Install NOdejs"
 
 id roboshop
-if [ $? -ne 0]; then
+if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
     VALIDATE $? "Adding user "
 else
@@ -62,7 +62,7 @@ VALIDATE $? "Change app directory"
 rm -rf /app/*
 VALIDATE $? "Removing app info"
 
-unzip /tmp/user.zipcd /app &>> $LOG_FILE
+unzip /tmp/user.zip &>> $LOG_FILE
 VALIDATE $? "Unzip code"
 
 npm install &>> $LOG_FILE
