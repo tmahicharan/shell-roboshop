@@ -54,7 +54,7 @@ VALIDATE $? "locating to app"
 
 rm -rf /app/* &>> $LOG_FILE
 
-unzip /tmp/shipping.zip
+unzip /tmp/shipping.zip &>> $LOG_FILE
 VALIDATE $? "unzip app"
 
 cd /app 
