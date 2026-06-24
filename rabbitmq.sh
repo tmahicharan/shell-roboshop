@@ -43,7 +43,7 @@ VALIDATE $? "Start RabbitMq"
 
 id roboshop
 if [ $? -ne 0 ]; then
-    rabbitmqctl add_user roboshop roboshop123 
+    rabbitmqctl add_user roboshop roboshop123 &>> $LOG_FILE
     VALIDATE $? "Adding RabbitMq user"
 else
     echo -e "user already exist $Y skipping.. $N "
