@@ -81,7 +81,7 @@ VALIDATE $? "Start shipping"
 dnf install mysql -y &>> $LOG_FILE
 VALIDATE $? "Install mysql"
 
-mysql -h mysql.mahidevops.fun -uroot -pRoboShop@1 -e 'use mysql' 
+mysql -h mysql.mahidevops.fun -uroot -pRoboShop@1 -e 'use cities' &>>$LOG_FILE 
 if [ $? -ne 0 ]; then
     mysql -h mysql.mahidevops.fun -uroot -pRoboShop@1 < /app/db/schema.sql
     mysql -h mysql.mahidevops.fun -uroot -pRoboShop@1 < /app/db/app-user.sql 
