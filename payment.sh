@@ -32,10 +32,10 @@ VALIDATE() {
     fi
 }
 
-dnf install python3 gcc python3-devel -y &>> $LOGS_FILE
+dnf install python3 gcc python3-devel -y &>> $LOG_FILE
 VALIDATE $? "Installing python"
 
-id roboshop &>> $LOGS_FILE
+id roboshop &>> $LOG_FILE
 if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
     VALIDATE $? "Adding user "
@@ -45,7 +45,7 @@ else
 mkdir -p /app 
 VALIDATE $? "Creating directory"
 
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip &>> $LOGS_FILE
+curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip &>> $LOG_FILE
 VALIDATE $? "Download code"
 
 cd /app 
@@ -53,13 +53,13 @@ VALIDATE $? "Changing directory"
 
 rm -rf /app/*
 
-unzip /tmp/payment.zip &>> $LOGS_FILE
+unzip /tmp/payment.zip &>> $LOG_FILE
 VALIDATE $? "Unzip code"
 
 cd /app
 VALIDATE $? "Changing directory"
 
-pip3 install -r requirements.txt &>> $LOGS_FILE
+pip3 install -r requirements.txt &>> $LOG_FILE
 VALIDATE $? "Installing requirments"
 
 cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service
