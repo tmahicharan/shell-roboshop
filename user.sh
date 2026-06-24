@@ -46,7 +46,7 @@ else
     echo -e "User already exist-- $Y SKIPPING $N "
 fi
 
-mkdir /app 
+mkdir -p /app 
 VALIDATE $? "Creating app directory"
 
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
@@ -56,7 +56,7 @@ cd /app
 VALIDATE $? "Change app directory"
 
 rm -rf /app/*
-unzip /tmp/user.zip
+unzip /tmp/user.zip &>> $LOG_FILE
 VALIDATE $? "Unzip code"
 
 npm install &>> $LOG_FILE
