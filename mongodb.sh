@@ -47,7 +47,7 @@ VALIDATE $? "Updating MongoDB configuration"
 systemctl restart mongod
 VALIDATE $? "Restarting MongoDB service"
 
-END_TIME=$(date +%s) &>> $LOGS_FILE
+END_TIME=$(date +%s) 
 
-TOTAL_TIME=$(($END_TIME-$START_TIME)) &>> $LOGS_FILE
+TOTAL_TIME=$(($END_TIME-$START_TIME)) 
 echo "Total script script executed is $TOTAL_TIME "
